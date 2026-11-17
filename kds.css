@@ -1,0 +1,481 @@
+:root {
+    --primary: #e85d04;
+    --primary-dark: #dc2f02;
+    --secondary: #023e8a;
+    --bg: #0f172a;         /* Fondo oscuro de alto contraste ideal para cocina y tablets */
+    --surface: #1e293b;
+    --surface-light: #334155;
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+    --success: #16a34a;
+    --warning: #f59e0b;
+    --danger: #dc2626;
+    --radius: 14px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+.kds-topbar {
+    background: linear-gradient(135deg, #03045e 0%, #023e8a 100%);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.kds-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.kds-brand img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+    background: #fff;
+}
+
+.kds-brand h1 {
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.kds-brand span {
+    font-size: 0.72rem;
+    color: #bae6fd;
+    display: block;
+}
+
+.waiter-selector-box {
+    background: rgba(255,255,255,0.14);
+    padding: 6px 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.waiter-selector-box select {
+    background: transparent;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 0.85rem;
+    outline: none;
+}
+
+.waiter-selector-box select option {
+    color: #0f172a;
+}
+
+/* NAVEGACIÓN TÁCTIL */
+.kds-mobile-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--surface);
+    padding: 8px;
+    gap: 8px;
+    border-bottom: 1px solid var(--surface-light);
+}
+
+.kds-nav-btn {
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.kds-nav-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+.pill-count {
+    background: rgba(0,0,0,0.3);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+/* VISTAS */
+.kds-view {
+    display: none;
+    padding: 14px;
+    flex: 1;
+}
+
+.kds-view.active {
+    display: block;
+}
+
+/* TOOLBAR KDS */
+.kds-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.filter-chips {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.chip {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--surface-light);
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.chip.active {
+    background: var(--secondary);
+    border-color: #38bdf8;
+}
+
+.toolbar-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-icon {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--surface-light);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-icon.active {
+    background: var(--success);
+    border-color: var(--success);
+}
+
+/* TARJETAS DE COMANDAS KDS */
+.tickets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 14px;
+}
+
+.ticket-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--surface-light);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.ticket-head {
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 800;
+}
+
+.ticket-card.st-Pendiente .ticket-head { background: var(--danger); color: white; }
+.ticket-card.st-Preparando .ticket-head { background: var(--warning); color: #0f172a; }
+.ticket-card.st-Listo .ticket-head { background: var(--success); color: white; }
+
+.ticket-body {
+    padding: 14px;
+    flex: 1;
+}
+
+.t-item {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--surface-light);
+    font-size: 1rem;
+}
+
+.t-item:last-child { border-bottom: none; }
+
+.t-note {
+    display: block;
+    background: rgba(220, 38, 38, 0.2);
+    border-left: 3px solid var(--danger);
+    color: #fca5a5;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    margin-top: 4px;
+    border-radius: 4px;
+}
+
+.ticket-foot {
+    padding: 10px 14px;
+    background: rgba(0,0,0,0.2);
+}
+
+.btn-ticket-action {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    color: white;
+}
+
+/* MAPA DE MESAS MÓVIL */
+.tables-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tables-header h2 { font-size: 1.1rem; }
+
+.legend-pills {
+    display: flex;
+    gap: 12px;
+    font-size: 0.8rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.dot.free { background: var(--success); }
+.dot.busy { background: var(--primary); }
+.dot.bill { background: var(--warning); }
+
+.mobile-tables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+}
+
+.m-table-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 14px;
+    border-top: 5px solid var(--success);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 130px;
+}
+
+.m-table-card.ocupada { border-top-color: var(--primary); }
+.m-table-card.cuenta { border-top-color: var(--warning); }
+
+.m-table-card h3 { font-size: 1.1rem; margin-bottom: 4px; }
+.m-table-card small { color: var(--text-muted); font-size: 0.78rem; display: block; }
+.m-table-price { font-size: 1.1rem; font-weight: 800; color: #38bdf8; margin-top: 10px; }
+
+/* MODAL TÁCTIL */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 50;
+}
+
+.hidden { display: none !important; }
+
+.modal-sheet {
+    background: var(--surface);
+    width: 100%;
+    max-width: 650px;
+    max-height: 92vh;
+    border-radius: 20px 20px 0 0;
+    padding: 18px;
+    overflow-y: auto;
+}
+
+@media (min-width: 700px) {
+    .modal { align-items: center; padding: 16px; }
+    .modal-sheet { border-radius: 16px; }
+}
+
+.modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--surface-light);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.form-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-stack input, .search-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--surface-light);
+    background: var(--bg);
+    color: white;
+    font-size: 0.95rem;
+}
+
+.table-info-strip {
+    display: flex;
+    justify-content: space-between;
+    background: var(--bg);
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+.mini-cats {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    margin: 10px 0;
+    padding-bottom: 4px;
+}
+
+.mcat {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--surface-light);
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.mcat.active { background: var(--primary); border-color: var(--primary); }
+
+.menu-scroll-list {
+    max-height: 170px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.menu-pick-row {
+    background: var(--bg);
+    padding: 10px 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.round-box, .accumulated-box {
+    background: var(--bg);
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.round-box h4, .accumulated-box h4 {
+    font-size: 0.88rem;
+    color: #38bdf8;
+    margin-bottom: 8px;
+}
+
+.draft-scroll, .acc-scroll {
+    max-height: 110px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    font-size: 0.86rem;
+}
+
+.draft-item-card {
+    border-bottom: 1px solid var(--surface-light);
+    padding: 6px 0;
+}
+
+.draft-note-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px dashed var(--surface-light);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    margin-top: 4px;
+}
+
+.btn-action {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-action.primary { background: var(--primary); }
+.btn-action.warning { background: var(--warning); color: #0f172a; }

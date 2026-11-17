@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cocina KDS | Tostaderia La Crudita</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="kds.css">
+</head>
+<body>
+
+    <!-- BARRA SUPERIOR EXCLUSIVA PARA PANTALLA DE COCINA -->
+    <header class="kds-topbar">
+        <div class="kds-brand">
+            <img src="img/logo.jpeg" alt="Logo La Crudita">
+            <div>
+                <h1>La Crudita • Monitor Cocina (KDS)</h1>
+                <span id="kds-sync-indicator"><i class="fa-solid fa-wifi"></i> Conectando...</span>
+            </div>
+        </div>
+
+        <div class="toolbar-actions">
+            <button class="btn-icon" onclick="manualSync()" title="Sincronizar ahora">
+                <i class="fa-solid fa-rotate"></i>
+            </button>
+            <button class="btn-icon active" id="sound-toggle-btn" onclick="toggleSound()" title="Activar/Silenciar alerta sonora">
+                <i class="fa-solid fa-volume-high"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- TABLERO DE COMANDAS EN TIEMPO REAL -->
+    <main class="kds-view active">
+        <div class="kds-toolbar">
+            <div class="filter-chips">
+                <button class="chip active" onclick="setKdsFilter('Todos', this)">
+                    Todas (<span id="nav-kds-count">0</span>)
+                </button>
+                <button class="chip" onclick="setKdsFilter('Pendiente', this)">
+                    Pendientes (<span id="cnt-pend">0</span>)
+                </button>
+                <button class="chip" onclick="setKdsFilter('Preparando', this)">
+                    Preparando (<span id="cnt-prep">0</span>)
+                </button>
+                <button class="chip" onclick="setKdsFilter('Listo', this)">
+                    Listas para Entregar (<span id="cnt-listo">0</span>)
+                </button>
+            </div>
+        </div>
+
+        <div class="tickets-grid" id="kds-board">
+            <!-- Comandas en tiempo real -->
+        </div>
+    </main>
+
+    <script src="kds.js"></script>
+</body>
+</html>
